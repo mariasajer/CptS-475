@@ -1,0 +1,102 @@
+---
+title: "Assignment 2 Question 2"
+author: "Morgan Baccus"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+suppressMessages(library(tidyverse))
+
+```
+
+```{r who}
+#Read in and tidy the data set
+
+library(tidyr)
+
+tidyr::who %>%
+  pivot_longer(
+    cols = new_sp_m014:newrel_f65, 
+    names_to = "key", 
+    values_to = "cases", 
+    values_drop_na = TRUE
+  ) %>% 
+  mutate(
+    key = stringr::str_replace(key, "newrel", "new_rel")
+  ) %>%
+  separate(key, c("new", "var", "sexage")) %>% 
+  select(-new, -iso2, -iso3) %>% 
+  separate(sexage, c("sex", "age"), sep = 1)
+```
+
+Question 2.a
+the line "mutate(key = stringr::str_replace(key, "newrel", "new_rel"))" is necessary to properly tidy the data so that the names are consistent. If you skip this line then later when you need to separate the variable names at each underscore, it won't work for this variable.
+
+
+```{r}
+#Question 2.b
+#How many entries are gone after setting values_drop_na to true
+
+who1 <- tidyr::who %>% 
+  pivot_longer(
+    cols = new_sp_m014:newrel_f65, 
+    names_to = "key", 
+    values_to = "cases",
+    values_drop_na = TRUE
+  )
+who1
+
+who2 <-tidyr::who %>% 
+  pivot_longer(
+    cols = new_sp_m014:newrel_f65, 
+    names_to = "key", 
+    values_to = "cases", 
+    values_drop_na = FALSE
+  )
+who2
+```
+When values_drop_na = FALSE, there are 404,440 observations. When values_drop_na = TRUE, there are only 76,046 observations. This means that 329,394 entries were removed.
+
+
+Question 2.c
+Explicit missing values: a value that is marked as na 
+Implicit missing values: a value that is simply not present in the data
+
+There are implicit missing values for the variable cases and are shown as zeros in the dataset.
+
+Question 2.d
+I believe that country, year, var, sex, and cases are all typed  appropriately.It seems as if age could be reworked so that each age range corresponded with a letter and the letter is what appeared in the data. That would make a chr the best type. Reading the lower age and the upper range as one number is confusing and unnecessary as they are stored as chrs and can't even be used in calculations.
+
+```{r}
+#Question 2.e
+#Generate an informative data visualization
+
+who1 %>%
+  group_by(country) %>%
+  summarise(average_cases = mean(cases, na.rm=TRUE)) %>%
+  top_n(10) %>%
+  arrange(desc(average_cases))
+
+who1 <- who1 %>% mutate(average_cases = mean(cases, na.rm=TRUE))
+
+```
+This chart shows the top ten countries with the highest average cases in descending order. This is interesting to look at because it shows that the top countries are all countries that do not have well established health care systems. If a country that does have an established health care system was in the top ten countries with the highest average number of cases, that would suggest other issues going on. It is also interesting to see the large difference between the number of average cases for the first two countries and then the next eight. The number of cases almost triples from the third country, South Africa, to the second country, China.
+
+
+```{r}
+#Question 2.f
+#Create a table and use pivot_longer()/gather() and separate()/pivot_wider() to alter it
+
+qtrRev <- data.frame(Group=rep(c('1', '2', '3'), each=4),
+                     Year=rep(c('2006', '2007', '2008', '2009'), times=3),
+                     Qtr.1=rep(c(15, 12, 22, 10, 12, 16, 13, 23, 11, 13, 17, 14)),
+                     Qtr.2=rep(c(16, 13, 22, 14, 13, 14, 11, 20, 12, 11, 12, 9)),
+                     Qtr.3=rep(c(19, 27, 24, 20, 25, 21, 29, 26, 22, 27, 23, 31)),
+                     Qtr.4=rep(c(17, 23, 20, 16, 18, 19, 15, 20, 16, 21, 19, 24)))
+
+qtrRev %>%
+  gather(Quarter, Revenue, Qtr.1:Qtr.4) %>%
+  separate(Quarter, c("Time_Interval", "Interval_ID"))
+```
+

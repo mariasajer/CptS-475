@@ -1,0 +1,90 @@
+---
+title: "Assignment 3 Question 1"
+author: "Morgan Baccus"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#load dplyr
+install.packages("tidyverse", repos = "https://cran.r-project.org/")
+suppressMessages(library(dplyr))
+```
+
+```{r}
+#Read in the data set flights.csv
+
+flights <- read.csv("flights.csv", header=TRUE)
+```
+
+```{r}
+#Print rows with any variable missing a value
+
+#flights[rowSums(is.na(flights)) > 0, ]
+```
+
+```{r}
+#Print the first few values of the columns with a header containing the string "time"
+
+flights %>%
+  select(contains("time")) %>%
+  head(., n=10)
+```
+
+```{r}
+#question 1.a
+#Count the number of flights that departed NYC in the first 7 days of Jan. and Feb. combined
+
+flights %>%
+  filter(month <= 2 & day <= 7) %>%
+  count()
+#12,182 flights flew out of NYC in the first 7 days of Jan. and Feb. combined
+```
+
+```{r}
+#question 1.b
+#Print the year, month, day, carrier and air_time of the 6 longest air times in descending order by air_time
+
+flights %>%
+  select(year, month, day, carrier, air_time) %>%
+  top_n(6) %>%
+  arrange(desc(air_time))
+
+```
+
+```{r}
+#question 1.c
+#Add a new column called speed to the data frame. Speed = distance / air_time * 60 (in mph)
+
+flights %>%
+  select(distance, air_time) %>%
+  mutate(speed = distance/air_time * 60)
+
+flights <- flights %>% mutate(speed = distance/air_time * 60)
+```
+
+```{r}
+#question 1.d
+#Display the average, min, and max air_times for each month
+
+flights %>%
+  group_by(month) %>%
+  summarise(avg_air_time = mean(air_time, na.rm=TRUE), min_air_time=min(air_time, na.rm=TRUE), max_air_time=max(air_time, na.rm=TRUE))
+
+```
+
+```{r}
+#question 1.e
+#Impute the missing air_times as distance / average speed of flights to that destination
+#Make a copy of the data frame and now impute the missing air_times as average air_time for flights to that destination
+
+flights1 <- flights %>%
+  group_by(dest) %>%
+  mutate(air_time = ifelse(is.na(air_time), distance / mean(speed / 60), air_time))
+
+flights2 <- flights %>%
+  group_by(dest) %>%
+  mutate(air_time = ifelse(is.na(air_time), mean(air_time, na.rm = TRUE), air_time))
+```
+
