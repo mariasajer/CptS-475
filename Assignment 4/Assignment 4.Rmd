@@ -1,0 +1,189 @@
+---
+title: "Assignment 4"
+author: "Morgan Baccus"
+output:
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Problem 1
+```{r}
+# Install and import "nycflights3"
+
+library(nycflights13)
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+
+```
+
+Problem 1 part a
+```{r nycflights13}
+# Filter the dataset to display tail number, year, month, day, hour, origin,
+# and humidity for all flights heading to TPA after 12pm on Nov. 1, 2013
+
+weather2 <- weather %>%
+  select(origin, year, month, day, hour, humid) %>%
+  filter(hour >= 12, month == 11, day == 1, year == 2013)
+
+flights_humidity <- flights %>%
+ select(year, month, day, hour, origin, dest, tailnum) %>%
+  filter(dest == 'TPA', hour >= 12, month == 11, day == 1, year == 2013)
+  
+flights_humidity %>%
+  left_join(weather2, flights_humidity, by= 'hour') %>%
+  filter(origin.x == origin.y) %>%
+  select(-dest)
+
+```
+
+Problem 1 part b
+Explain the difference between the following two joins:
+
+  (1) anti_join(flights, airports, by = c("dest" = "faa"))
+  (2) anti_join(airports, flights, by = c("faa" = "dest"))
+
+
+1 will return any flights that had a destination not in the list of faa destinations.
+2 will return any airport in the list of faa destinations that wasn't a destination of any flight in the dataset.
+
+Both joins are looking for matches between dest and faa, but 1 will return flights minus the matches and 2 will return airports minus the matches.
+
+
+
+
+
+Problem 2 part c
+```{r}
+# Filter flights to show planes that have flown 100 or more flights
+
+# flights_100 is a list of all the tail numbers that have flown at least 100 flights
+flights_100 <- flights %>%
+  group_by(tailnum) %>%
+  summarise(flight_count = n()) %>%
+  filter(flight_count >= 100)
+
+# flight_100_info is a copy of flights,
+#but only contains flights that have tail numbers listed in flights_100
+flights_100_info <- flights %>%
+  semi_join(flights_100)
+
+print(flights_100_info, n=20)
+```
+
+Problem 1 part d
+```{r}
+# What weather conditions make it more likely to see a delay?
+# I'm going to use dep_delay to measure the delays
+# I'm going to analyze the weather by looking at temp, wind_speed, and precip
+
+flight_weather <- flights %>%
+  full_join(weather) %>%
+  select(dep_delay, temp, wind_speed, precip) %>%
+  filter(dep_delay >= 1) %>%
+  arrange(desc(dep_delay))
+
+worst_delays <- flight_weather[c(1:200), c(1:4)]
+
+ggplot(worst_delays, aes(x = temp, y=wind_speed, color = precip)) +
+  geom_point()
+```
+Looking at the plot of the longest 200 departure delays, it appears that cold temperatures and high wind speeds can cause delays, but precipitation is the biggest factor.  
+
+
+
+Problem 1 part e
+```{r}
+# Create a map that sizes each destination airport by number of incoming flights
+
+flights_dest <- flights %>%
+  group_by(dest) %>%
+  summarise(dest_count = n()) %>%
+  inner_join(airports, by = c("dest" = "faa"))
+
+flights_dest %>%
+  ggplot(aes(lon, lat, size = dest_count)) +
+  borders("state") +
+  geom_point(stat="identity", alpha=0.5, color="darkblue") +
+  coord_quickmap() +
+  xlab("Longitude") +
+  ylab( "Latitude") +
+  ggtitle("Destination Frequency") +
+  labs(size = "Number of incoming flights")
+  
+```
+
+
+
+
+
+Problem 2
+```{r}
+#library(usmap)
+#library(ggplot2)
+
+us_states <- map_data("state")
+vaccine_by_state <- read.csv("covid19_vaccinations_USA.csv", header = TRUE)
+
+vaccine_by_state %>%
+  right_join(us_states, by=c("state" = "region"))
+
+min_by_vacc <- min(vaccine_by_state$Janssen_Doses,
+                   vaccine_by_state$Moderna_Doses,
+                   vaccine_by_state$Pfizer_Doses)
+
+max_by_vacc <- max(vaccine_by_state$Janssen_Doses,
+                   vaccine_by_state$Moderna_Doses,
+                   vaccine_by_state$Pfizer_Doses)
+
+
+# Janssen
+#vaccine_by_state %>%
+#  ggplot(aes(x=long, y=lat, fill=Janssen_Doses)) +
+#  borders("state") +
+#  geom_polygon(color = "gray90", size = 0.1) +
+#  guides(fill="none") +
+#  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+#  theme(axis.line = element_blank(),
+#        axis.text = element_blank(),
+#        axis.ticks = element_blank(),
+#        axis.title = element_blank(),
+#        panel.background = element_blank(),
+#        panel.border = element_blank(),
+#        panel.grid = element_blank())
+
+# I could not get this problem to work even after trying a couple different methods.
+
+```
+
+
+
+Problem 3
+```{r}
+
+library("tm")
+library("SnowballC")
+library("wordcloud")
+library("RColorBrewer")
+library("dplyr")
+
+file_text <- readLines("Repurposing_Project_Report_Final.txt")
+corpus <- Corpus(VectorSource(file_text))
+corpus <- corpus %>% 
+  tm_map(removeNumbers) %>%
+  tm_map(removePunctuation) %>%
+  tm_map(stripWhitespace)
+
+dtm <- TermDocumentMatrix(corpus)
+matrix <- as.matrix(dtm)
+sorted_matrix <- sort(rowSums(matrix), decreasing=TRUE)
+df <- data.frame(word = names(sorted_matrix), frequency = sorted_matrix)
+
+res <- wordcloud(corpus, min.freq = 1, max.words = 200, colors = brewer.pal(6, name="Dark2"))
+
+```
+

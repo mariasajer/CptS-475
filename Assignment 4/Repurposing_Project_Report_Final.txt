@@ -1,0 +1,133 @@
+Work Productivity at Home
+By:
+Michael Babicz, Jaida Woo, Timothy Sulistyo
+
+Washington State University
+Date Completed: 07/19/2020
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Letter of Transmittal
+
+
+Washington State University
+Pullman, Wa 99163
+Michael, Timothy, and Jaida
+7/18/2020
+
+Dear Laura Powers,
+      The report we have presented to you and to fellow corporate offices is about Work Productivity at Home. As times have changed in our world, we have decided to orient our analysis towards increasing work productivity at home because of the worldwide pandemic known as Covid-19. Our group found it increasingly important that we do such work because this certain niche in the market has not been touched yet and we found an opportunity to give corporations information on the success of working from home. Our group has agreed to finish this report by the 18th of July, 2020 with everyone completing certain aspects of the project. We hope to inform you on a very important topic that is currently taking the world by storm and corporate work settings that will make work at home more productive.
+      The purpose of this report is to give a detailed outline of the current crisis many employers face today. As covid-19 hit the world by storm, most if not all, companies are making employees work remotely. Working at home vs. the workplace has many obstacles that can lead to lower productivity levels in workers such as distractions, unreliable internet, and little sense of work community. Our interests align with many corporations questions about working from home and we are here to deliver solutions to any questions you might have. The reason our group has conducted this research assignment is to give you and fellow corporate offices plans to increase productivity at home because work must go on in a very inconvenient fashion. 
+      We hope that you find this research valuable and applicable to your own situation that can lead your company to identical or improved working productivity out of employees. If you have any questions you can email any of the following emails listed below. 
+Michael.babicz@wsu.edu
+Jaida.woo@wsu.edu
+timothysulistyo@gmail.com
+
+      Executive Summary
+      
+      
+      This report analyzes the current problem that many corporations are facing today which is employees working at home. Not only is this a problem, but work productivity is going down due to certain reasons. Most people do not have a designated office space at their household and are using their dining table to do work. Not only do this increase distractions but if makes you feel like you aren’t in a work environment, so you don’t have to work as much. In addition, lots of employees have a family and with kids being home for summer this increases more distractions. Another problem that we researched was unreliable internet service at home vs. the workplace. These are just a few of the problems that arose when doing our research. 
+      We started doing our research using a survey which consisted of three research questions that you will find below. We wanted to get a base data set of what we were dealing with and the right solutions to the problems that came about from these surveys. Most of the surveys had similar responses so we narrowed our solutions to three topics. Reliable internet connection, increasing communication, and limiting distractions. Our primary take away for fixing reliable internet connection is corporations providing mobile hotspots to employees only during this time to provide stable internet speeds for doing various work that can match speeds in the workplace. Lots of people have various internets that didn’t meet workplace standards and it decreased work productivity. Secondly, increasing communication was a necessity that means workers responded in the survey. With Mattermost, this allows communication as if you were working right in the office. It gives you the sense of a workplace environment when working from home and this proved to increase productivity at home. Finally, the last most answered response dealt with distractions at home. Our group decided that giving a pair of noise-cancelling headphones was the best way to deal with distraction at home and this proved to be true. Each corporation would give their employees a set of headphones which would lead to increased productivity. 
+	
+	The results from our analysis came out higher than we anticipated. We determined that using Mattermost increased work productivity by 85%. In addition, using noise cancelling headphones increased productivity to 70% and internet hotspot increased to 55%. The results are clear in our analysis that using our methods will increase work productivity in various instances that will increase productivity at home and even more so than previous at work. It can be concluded that our research will have a positive impact on the workforce at home for now and going forward. Through these three methods we have found the most effective strategy in increasing overall work productivity from home. 
+
+Introduction:
+	Prior to the COVID-19 pandemic, working outside of the conventional workplace had become a standard work arrangement for 15% of all corporate employees in the United States (Neufeld & Fang). Since the COVID-19 pandemic began, that number has increased by 173%. There are numerous benefits associated with telecommuting from a business owner’s perspective such as reducing gas emissions, increased level of flexibility, and cost-effectiveness. From an employee’s point of view, telecommuting increases morale, it is more convenient, and of course, staying healthy. With that being said, more and more companies are transitioning to having more employees work remotely, and even after the pandemic has subsided, working remotely will be an appealing perk for companies to offer. 
+	Though there are countless benefits to working remotely, there are also limitations. These limitations include difficulty in communication, distractions at home, internet connection issues, and connecting employees to the culture of the organization just to name a few. Improving these issues will increase the productivity and morale of the employee, which will in turn benefit the company as a whole.
+
+Research Methods and Tasks: 
+ 	We plan to conduct my study using real subjects from a variety of fields. We focus primarily on jobs that can be performed remotely and exclude those that can’t from our study, such as, jobs in healthcare and food service jobs. Zillow, Microsoft, and Dexcom are the perfect companies for our study because they have jobs in human resources, IT, engineering, sales, and finance just to name a few. We plan to conduct a survey to our co-workers in these three companies and get their feedback about how they feel while working remotely.
+ 	The survey will consist of three questions:  
+1. How productive do you feel you work at home on a scale of 1-10?  
+2. How productive do you feel you work when you are onsite on a scale of 1-10? 
+3. Do you feel there is any way you could be more productive at home? If so, please explain.  
+ 
+Program 1: Increasing Communication 
+ 	To increase communication while working virtually, many different directions can be taken. I believe that implementing a tool such as Slack or Mattermost will allow for ease of communication virtually. Mattermost is a self-hostable online chat service with file sharing, search, and integrations. The integration of this tool into a company that is working virtually will surely increase communication. After using this program for 2 weeks, the same survey will be sent to them and their managers. This way, there is a quantifiable result that will make it obvious if there was an increase in productivity when more communication tools were introduced.  
+ 
+Program 2: Limiting Distractions 
+ 	In order to limit distractions while working from home, it would be costly and difficult to ensure that every employee has a designated office space at home, thus a simpler method must be utilized. A set of noise-cancelling headphones will then be distributed to each test subject. It is important to ensure that these headphones have an ambient noise feature, which allows you to pay attention to the sounds around you while still providing noise reduction around you. This way, you will not be totally in the dark while you are working but it will be easier to focus. At the conclusion of 2 weeks, the same survey will be sent out and it will be determined whether this method increased productivity.  
+
+Program 3: Stable Internet Connection  
+ 	Due to the increased reliance of internet connectivity while working from home, it is crucial that every employee has access to a strong internet connection while working in order to maximize productivity. The plan, similar to the two previous and the next one, will rely on two surveys, one prior to the treatment and after the treatment. The survey is identical to the first two to ensure there is as little bias in the phrasing as possible. The treatment in this case will be to issue mobile hotspots to the employees. These mobile hotspots will provide a better internet connection to those who have it, as well as provide a solution for employees if their internet service provider experiences an outage (which happens more often than you would think due to the sudden increase in telecommuters). The hotspots will be issued for 2 weeks and at the conclusion of two weeks, the second wave of surveys will be sent out. 
+
+
+Result & Tasks:
+	We decided to reach out to several companies and our co-workers at Zillow, Dexcom and Microsoft to test if our products work effectively. After implementing our group products in each company, such as: increasing communication using MatterMost software, limiting distractions using a noise-cancelling headphone and stable internet connection using a high speed mobile hotspot, the results are as follow:
+Program 1: Increasing Communication
+	The study that we conducted in each company shows there is an 85% increase in productivity while working remotely. This proves that the MatterMost software are effectively helping employees to interact which their fellow co-workers effectively and it can help each team to stay connected. From this result, we are confident that we can recommend the use of MatterMost in the companies because of the higher productivity result that can be seen when implementing the use of this program. Companies can begin training their employees to use MatterMost by providing tutorial, so that they can have a higher productivity.
+Program 2: Limiting Distractions
+	This study resulted in an 70% increase in productivity while working remotely. We expected a higher productivity increase from this particular study and we believe there were exceptions because not all employees enjoy using a headphone while working. However, since the result shows a high increase in productivity, we would like to recommend the use of a noise-cancelling headphones to limit distractions.
+Program 3: Stable Internet Connection
+	The implementation of this program resulted in 55% an increase in productivity while working outside of the offices. We believe the result is not high as the other programs because we conduct this study to random employees meaning not all of them have an issue with their internet connection. We believe if we conduct this program to employees that have an internet connection issue, it would resulted in a much higher productivity since now they can work effectively with a stable internet connection.
+
+Conclusions:
+	To conclude, we believe implementing these programs in every company will result in a higher productivity from their employees. There is positive correlation between the application of each program above and the level of productivity noted by each employee. We believe the reason why certain program shows a low increase in productivity was due to the fact that they already have a strong stable internet connection (Program 3) and they already have a quit space to work at home (Program 2). Overall, we believe these programs will increase the productivity of each employee by at least 55% and implementing these programs will help employees navigate through this new normal/routine.
+
+
+ Recommendations:
+	The recommendations of our repurposed product can be judged by the results of the survey in Appendix B. This survey was intended to judge the productivity of employees before our repurposed product was implemented and after. Using these results, it can be determined whether the employees saw an increase in their productivity and thus this product can be recommended. An unsuccessful product would have little to no increase in productivity shown in the survey results. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Appendices:
+Appendix A:
+
+	Program 1: Increasing Communication
+      The goal of this program was to increase the communication between coworkers when they are working remotely. In order to do this, we chose to implement the program MatterMost, a self-hostable online chat service with file sharing, search, and integrations.
+	
+	Program 2: Limiting Distractions 
+      While working from home, employees are way more susceptible to distraction than in a traditional work environment. To combat this, noise-cancelling headphones were issued. The specific ones issued were Insignia Wireless Noise-Cancelling Headphones.
+
+	Program 3: Stable Internet Connection
+      Many employees working remotely reported that their at home internet connection is not the most strong and consistent. Nothing is more frustrating than having internet problems limit your productivity so to counteract this, mobile hotspots were distributed to employees to provide alternate means of getting connected. The one selected for this study was from Boost Mobile. 
+
+Appendix B:
+
+      The survey that was sent out before and after the implementation of the programs mentioned consisted of the following questions:
+
+1. How productive do you feel you work at home on a scale of 1-10? 
+2. How productive do you feel you work when you are onsite on a scale of 1-10?
+3. Do you feel there is any way you could be more productive at home? If so, please explain. 
+
+The employees were asked to answer as honestly as possible. 
+
+
