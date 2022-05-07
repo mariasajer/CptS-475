@@ -1,0 +1,281 @@
+---
+title: "Assignment 5"
+author: "Morgan Baccus"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Question 1  
+### part a.  
+```{r}
+#Read in dataset
+cars <- read.csv("cars.csv")
+
+#Perform multiple linear regression
+lm_mpg <- lm(MPG ~ Origin , data = cars)
+summary(lm_mpg)
+
+```
+
+### i)  
+The predictors that appear to have a statistically significant relationship to the response are intercept, weight, and model. OriginUS and displacement also have a less significant relationship. This can be determined by looking at the significance codes in the summary above.  
+
+### ii)  
+The coefficient for the displacement variable suggests that as displacement increases, MPG increases simultaneously since the coefficient of displacement is positive.  
+
+### part b.  
+```{r}
+plot(lm_mpg)
+```
+
+A problem with the fit of the graphs is that they are not linear. The residual plots suggest that there are outliers. This is most apparent in the Residual vs. Fitted plot where the majority of the points are within -10 to 10 on the residual scale, but there are quite a few points at or below -20. In the Residuals vs. Leverage plot, most of the points are between 0.00 and 0.05 leverage, but there are several points past 0.012.
+
+### part c.  
+```{r}
+lm_temp <- lm(formula = MPG ~ Cylinders * Displacement, data = cars)
+summary(lm_temp)
+```
+
+```{r}
+lm_temp <- lm(formula = MPG ~ Displacement * Horsepower, data = cars)
+summary(lm_temp)
+```
+
+```{r}
+lm_temp <- lm(formula = MPG ~ Horsepower * Weight, data = cars)
+summary(lm_temp)
+```
+
+```{r}
+lm_temp <- lm(formula = MPG ~ Weight * Acceleration, data = cars)
+summary(lm_temp)
+```
+
+```{r}
+lm_temp <- lm(formula = MPG ~ Acceleration * Model, data = cars)
+summary(lm_temp)
+```
+
+```{r}
+lm_temp <- lm(formula = MPG ~ Model * Origin, data = cars)
+summary(lm_temp)
+```
+
+It appears that the cylinders and displacement, displacement and horsepower, horsepower and weight, and weight and acceleration interactions are statistically significant.
+
+# Question 2  
+### part a.  
+```{r}
+#Install libraries
+
+library(dplyr)
+library(MASS)
+attach(Boston)
+
+#View dataset explanation
+?Boston
+
+#age
+lm_age <- lm(crim ~ age , data = Boston)
+
+#black
+lm_black <- lm(crim ~ black , data = Boston)
+
+#chas
+lm_chas <- lm(crim ~ chas , data = Boston)
+
+#dis
+lm_dis <- lm(crim ~ dis , data = Boston)
+
+#indus
+lm_indus <- lm(crim ~ indus , data = Boston)
+
+#lstat
+lm_lstat <- lm(crim ~ lstat , data = Boston)
+
+#medv
+lm_medv <- lm(crim ~ medv , data = Boston)
+
+#nox
+lm_nox <- lm(crim ~ nox , data = Boston)
+
+#pratio
+lm_ptratio <- lm(crim ~ ptratio , data = Boston)
+
+#rad
+lm_rad <- lm(crim ~ rad , data = Boston)
+
+#rm
+lm_rm <- lm(crim ~ rm , data = Boston)
+
+#tax
+lm_tax <- lm(crim ~ tax , data = Boston)
+
+#zn
+lm_zn <- lm(crim ~ zn , data = Boston)
+
+```
+
+### part b.  
+There is a statistically significant association between the predictor and the response in every model with the exception of chas.
+The vairables are defined as:  
+- crim is the per capita crime rate by town.  
+- nox is the nitrogen oxides concentration.  
+- chas is the Charles River dummy variable (= 1 if tract bounds river; 0 otherwise).  
+- rm is the average number of rooms per dwelling.  
+- dis is the weighted mean of distances to five Boston  
+employment centers.  
+- medv is the median value of owner-occupied homes in $1000s.  
+
+Other than all the variables being about Boston, there does not exist a strong relationship between any of the variables. The variables are all either environment, housing, or employment statistics and have correlations to crime rates with the exception of chas.  
+
+### part c.  
+```{r}
+lm_all <- lm(crim ~ . , data = Boston)
+summary(lm_all)
+```
+
+We can reject the null hypothesis for the predictors intercept, zn, dis, rad, black, and medv.  
+
+### part d.  
+```{r}
+univariate_pred <- c(
+  lm_zn$coefficients[2],
+  lm_indus$coefficients[2],
+  lm_chas$coefficients[2],
+  lm_nox$coefficients[2],
+  lm_rm$coefficients[2],
+  lm_age$coefficients[2],
+  lm_dis$coefficients[2],
+  lm_rad$coefficients[2],
+  lm_tax$coefficients[2],
+  lm_ptratio$coefficients[2],
+  lm_black$coefficients[2],
+  lm_lstat$coefficients[2],
+  lm_medv$coefficients[2]
+  )
+
+multivariate_pred <- lm_all$coefficients[2:14]
+plot(univariate_pred, multivariate_pred)
+```
+
+### part e.  
+```{r}
+poly_fit_zn <- lm(formula = crim ~ poly(zn, 3), data = Boston)
+
+# compare fit
+anova(lm_zn, poly_fit_zn)
+poly_fit_indus <- lm(formula = crim ~ poly(indus, 3), data = Boston)
+anova(lm_indus, poly_fit_indus)
+poly_fit_nox <- lm(formula = crim ~ poly(nox, 3), data = Boston)
+anova(lm_nox, poly_fit_nox)
+poly_fit_rm <- lm(formula = crim ~ poly(rm, 3), data = Boston)
+anova(lm_rm, poly_fit_rm)
+poly_fit_age <- lm(formula = crim ~ poly(age, 3), data = Boston)
+anova(lm_age, poly_fit_age)
+poly_fit_dis <- lm(formula = crim ~ poly(dis, 3), data = Boston)
+anova(lm_dis, poly_fit_dis)
+poly_fit_tax <- lm(formula = crim ~ poly(tax, 3), data = Boston)
+anova(lm_tax, poly_fit_tax)
+poly_fit_rad <- lm(formula = crim ~ poly(rad, 3), data = Boston)
+anova(lm_rad, poly_fit_rad)
+poly_fit_ptratio <- lm(formula = crim ~ poly(ptratio, 3), data = Boston)
+anova(lm_ptratio, poly_fit_ptratio)
+poly_fit_black <- lm(formula = crim ~ poly(black, 3), data = Boston)
+anova(lm_black, poly_fit_black)
+poly_fit_lstat <- lm(formula = crim ~ poly(lstat, 3), data = Boston)
+anova(lm_lstat, poly_fit_lstat)
+poly_fit_medv <- lm(formula = crim ~ poly(medv, 3), data = Boston)
+anova(lm_medv, poly_fit_medv)
+```
+
+# Question 3  
+### part a. 
+image: ![](C:/Users/Morgan Baccus/OneDrive/WAZZU/CptS 475/Assignment 5/3a.jpg)
+
+### part b. 
+image: ![](C:/Users/Morgan Baccus/OneDrive/WAZZU/CptS 475/Assignment 5/3b.jpg)
+
+### part c. 
+image: ![](C:/Users/Morgan Baccus/OneDrive/WAZZU/CptS 475/Assignment 5/3c.jpg)
+
+# Question 4  
+### part a. 
+```{r}
+#Install libraries
+library(dplyr)
+library(SnowballC)
+library(tm)
+library(tidytext)
+library(stringr)
+
+#Read in dataset
+cc <- read.csv("consumer_complaints.csv", encoding = "UTF-8")
+
+#Remove [X+] from consumer_complaint column
+cc$Consumer_complaint = gsub("[X+]", " ", cc$Consumer_complaint)
+
+#Remove punctuation from consumer_complaint column
+cc$Consumer_complaint = gsub("[[:punct:]]", " ", cc$Consumer_complaint)
+
+corpus <- Corpus(VectorSource(cc$Consumer_complaint))
+
+dtm <- DocumentTermMatrix(corpus, control = list(
+  removeNumbers = TRUE,
+  stemming = TRUE,
+  stopwords = TRUE
+  ))
+
+dtm <- removeSparseTerms(dtm, 0.99)
+print(cc$Product[1])
+
+tidy(dtm[1, ])
+
+```
+
+### part b. 
+```{r}
+#Install libraries
+library(caret)
+library(tidyr)
+library(tidyverse)
+library(broom)
+library(naivebayes)
+
+complaints_df <- tidy(dtm)
+colnames(complaints_df)[1] <- "doc"
+complaints_df$doc <- as.numeric(complaints_df$doc)
+complaints_df <- complaints_df %>%
+  pivot_wider(values_from = count, names_from = term, values_fill = 0,
+              names_repair="unique") %>%
+  mutate(doc = cc$Product[doc])
+complaints_df$doc <- as.factor(complaints_df$doc)
+
+features <- complaints_df %>% dplyr::select(-doc)
+labels <- complaints_df$doc
+
+cor.features <- cor(features)
+hc <- findCorrelation(cor.features, cutoff=0.3)
+hc <- sort(hc)
+reduced_features <- features[,-c(hc)]
+
+train_index <- createDataPartition(labels, p = .8,
+                                   list = FALSE,
+                                   times = 1)
+
+train_features <- as.matrix(features[train_index,])
+train_labels <- as.matrix(labels[train_index])
+test_features <- as.matrix(features[-train_index,])
+test_labels <- labels[-train_index]
+
+nb.fit <- multinomial_naive_bayes(train_features, train_labels)
+nb.class <- predict(nb.fit, test_features)
+mean(nb.class == as.matrix(test_labels))
+
+confusionMatrix(data = nb.class, reference = test_labels)
+```
+
